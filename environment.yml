@@ -1,0 +1,4 @@
+name: Data_Analysis
+channels:
+  - defaults
+prefix: J:\Anaconda\envs\Data_Analysis
