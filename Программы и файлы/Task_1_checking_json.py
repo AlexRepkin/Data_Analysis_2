@@ -79,6 +79,20 @@ def save_people(file_name, staff):
 def load_people(file_name):
     """Загрузить всех людей из файла JSON."""
 
+    schema = {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string"},
+                "surname": {"type": "string"},
+                "telephone": {"type": "string"},
+                "birthday": {"type": "string"}
+            },
+            "required": ["name", "surname", "telephone", "birthday"]
+        }
+    }
+
     # Открыть файл с заданным именем для чтения.
     with open(file_name, "r", encoding="utf-8") as fin:
         loaded = json.load(fin)
@@ -130,17 +144,4 @@ def main():
 
 
 if __name__ == "__main__":
-    schema = {
-        "type": "array",
-        "items": {
-            "type": "object",
-            "properties": {
-                "name": {"type": "string"},
-                "surname": {"type": "string"},
-                "telephone": {"type": "string"},
-                "birthday": {"type": "string"}
-            },
-            "required": ["name", "surname", "telephone", "birthday"]
-        }
-    }
     main()

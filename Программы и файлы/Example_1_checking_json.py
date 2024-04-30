@@ -4,6 +4,7 @@
 import json
 import jsonschema
 import sys
+
 from datetime import date
 
 
@@ -79,6 +80,20 @@ def load_workers(file_name):
     """
     Загрузить всех работников из файла JSON.
     """
+
+    schema = {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string"},
+                "post": {"type": "string"},
+                "year": {"type": "integer"}
+            },
+            "required": ["name", "post", "year"]
+        }
+    }
+
     # Открыть файл с заданным именем для чтения.
     with open(file_name, "r", encoding="utf-8") as fin:
         loaded = json.load(fin)
@@ -153,16 +168,4 @@ def main():
 
 
 if __name__ == '__main__':
-    schema = {
-        "type": "array",
-        "items": {
-            "type": "object",
-            "properties": {
-                "name": {"type": "string"},
-                "post": {"type": "string"},
-                "year": {"type": "integer"}
-            },
-            "required": ["name", "post", "year"]
-        }
-    }
     main()
